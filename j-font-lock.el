@@ -57,9 +57,10 @@
   :group 'j
   :group 'j-font-lock)
 
+;; (defun mapcan (f l) (apply 'nconc (mapcar f l))) ;; apparently provided by 'cl
+
 (defmacro build-faces ( &rest faces )
   "Allows for easy defining of multiple faces in one command.
-
  (BUILD-FACES (FACE-NAME FACE-RULES DOCS-STR &optional GROUP) ...)"
   `(eval-when-compile
      ,@(mapcan (lambda ( x )
@@ -69,8 +70,9 @@
                      (defface ,name ,@body))))
                faces)))
 
+
 (build-faces
- (j-verb-face
+ (j-verb-face 
   `((t (:foreground "Red")))
   "Font Lock mode face used to higlight vrebs"
   :group 'j-faces)

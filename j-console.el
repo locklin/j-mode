@@ -46,7 +46,7 @@
   :group 'j
   :prefix "j-console-")
 
-(defcustom j-console-cmd "jconsole"
+(defcustom j-console-cmd "/home/scott/j64-701/bin/jconsole"
   "Name of the executable used for the J REPL session"
   :type 'string
   :group 'j-console)
@@ -128,10 +128,32 @@ the containing buffer"
     (insert-string (format "\n%s\n" region))
     (comint-send-input)))
 
+
+(defun j-console-execute-region-remain ( start end )
+  "Sends current region to the j-console-cmd session and exectues it"
+  (interactive "r")
+  (when (= start end)
+    (error "Region is empty"))
+  (let ((region (buffer-substring-no-properties start end))
+        (session (j-console-ensure-session))
+	(saved (current-buffer)))
+    (pop-to-buffer (process-buffer session))
+    (goto-char (point-max))
+    (insert-string (format "\n%s\n" region))
+    (comint-send-input)
+    (pop-to-buffer saved)
+    (forward-line)
+))
+
 (defun j-console-execute-line ()
   "Sends current line to the j-console-cmd session and exectues it"
   (interactive)
   (j-console-execute-region (point-at-bol) (point-at-eol)))
+
+(defun j-console-execute-line-remain ()
+  "Sends current line to the j-console-cmd session and exectues it"
+  (interactive)
+  (j-console-execute-region-remain (point-at-bol) (point-at-eol)))
 
 (defun j-console-execute-buffer ()
   "Sends current buffer to the j-console-cmd session and exectues it"

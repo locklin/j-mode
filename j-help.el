@@ -125,6 +125,7 @@ It groups the objects in LIST according to the predicate FN"
     ("p.." . "dpdotdot") ("_9:" . "dconsf") ("&.:" . "d631") ("NB." . "dnb"))
   "(string * string) alist")
 
+
 (defconst j-help-dictionary-data-block
   (mapcar
    (lambda (l) (list (length (caar l))

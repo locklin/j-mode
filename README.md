@@ -1,3 +1,16 @@
+## Scott notes:
+to make this work, I needed a (require 'cl)
+I also needed to tell emacs exactly where  my J interpretor was located; 
+otherwise it tried to connect to the Sun Java console, which is 
+unhelpfully also named jconsole. This is set in an obvious place in
+j-console.el.
+
+Finally, I added some changes to the default commands to make it more 
+compatible with the way I use emacs with R. Since I do the same kinds 
+of things in J that I ordinarily do in R, this works
+better for me.
+
+################# original dox below here ###############################
 # J Mode
 
 Provides font-lock, REPL integration ( via comint ) and a basic help
