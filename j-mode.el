@@ -49,11 +49,9 @@
 ;; Required eval depth for older systems
 (setq max-lisp-eval-depth (max 500 max-lisp-eval-depth))
 
-(require 'cl) ;;; Apparently necessary -SCL
 (require 'j-font-lock)
 (require 'j-console)
 (require 'j-help)
-
 
 
 (defconst j-mode-version "1.0.0"
@@ -70,14 +68,15 @@
   :group 'j)
 
 (defvar j-mode-map
-  (let ((mymap (make-keymap)))
-    (define-key mymap (kbd "C-c !")   'j-console)
-    (define-key mymap (kbd "C-c C-c") 'j-console-execute-buffer)
-    (define-key mymap (kbd "C-c C-r") 'j-console-execute-region)
-    (define-key mymap (kbd "C-c C-n") 'j-console-execute-line-remain)
-    (define-key mymap (kbd "C-c h")   'j-help-lookup-symbol)
-    (define-key mymap (kbd "C-c C-h") 'j-help-lookup-symbol-at-point)
-    mymap)
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c !")   'j-console)
+    (define-key map (kbd "C-c C-c") 'j-console-execute-buffer)
+    (define-key map (kbd "C-c C-r") 'j-console-execute-region)
+    (define-key map (kbd "C-c C-l") 'j-console-execute-line)
+    (define-key map (kbd "C-c C-n") 'j-console-execute-line-remain)
+    (define-key map (kbd "C-c h")   'j-help-lookup-symbol)
+    (define-key map (kbd "C-c C-h") 'j-help-lookup-symbol-at-point)
+    map)
   "Keymap for J major mode")
 
 (defvar j-mode-menu nil "Drop-down menu for j-mode interaction")

@@ -73,6 +73,16 @@ It groups the objects in LIST according to the predicate FN"
   (let ((sl (sort list (lambda (x y) (< (funcall fn x) (funcall fn y))))))
     (group-by* sl fn '() '() '())))
 
+(unless (fboundp 'some)
+  (defun some ( fn list )
+    (when list
+      (let ((val (funcall fn (car list))))
+	(if val val (some fn (cdr list)))))))
+
+(unless (fboundp 'caddr)
+  (defun caddr ( list )
+    (car (cdr (cdr list)))))
+
 (defgroup j-help nil
   "Documentation extention for j-mode"
   :group 'applications
@@ -125,11 +135,10 @@ It groups the objects in LIST according to the predicate FN"
     ("p.." . "dpdotdot") ("_9:" . "dconsf") ("&.:" . "d631") ("NB." . "dnb"))
   "(string * string) alist")
 
-
 (defconst j-help-dictionary-data-block
   (mapcar
    (lambda (l) (list (length (caar l))
-                     (regexp-opt (map 'list 'car l))
+                     (regexp-opt (mapcar 'car l))
                      l))
    (delq nil (group-by j-help-voc-alist (lambda (x) (length (car x))))))
   "(int * string * (string * string) alist) list")
@@ -186,7 +195,7 @@ string * int -> (string * string) list"
   ""
   (if (> current-index target-index) resolved-symbol
     (let ((next-symbol (j-help-determine-symbol string current-index)))
-      (check-and-jump
+      (j-help-branch-determine-symbol-at-point*
        string
        (+ current-index (length (or (car next-symbol) " ")))
        target-index
