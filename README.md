@@ -21,6 +21,10 @@ myself doing often. C-c g does this. I might use this as a
 fallback for when it fails on searches, but the use of lots 
 of funny symbols might make this an error.
 
+At some point I'll removove the dumb inline mods of colors and
+etc. that can be put into my .emacs, so I can track j-mode better,
+but for now, this is for my own use.
+
 Oh yeah; this works great with setting the default browser to
 w3m or less great with W3. I hate using the mouse and 
 relearning what keystrokes do what, which is why I use this 
