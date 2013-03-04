@@ -1,14 +1,32 @@
 ## Scott notes:
-to make this work, I needed a (require 'cl)
-I also needed to tell emacs exactly where  my J interpretor was located; 
-otherwise it tried to connect to the Sun Java console, which is 
-unhelpfully also named jconsole. This is set in an obvious place in
-j-console.el.
+Now merged with the latest j-mode, with a few modifications
+(location of J interp, colors, key rebindings). Note for 
+others: I needed to tell emacs exactly where  my J 
+interpretor was located; otherwise it tried to connect to 
+the Sun Java console, which is unhelpfully also named 
+jconsole. This confused me. This is set in an 
+obvious place in j-console.el.
 
-Finally, I added some changes to the default commands to make it more 
-compatible with the way I use emacs with R. Since I do the same kinds 
-of things in J that I ordinarily do in R, this works
-better for me.
+I added some changes to the default commands to make it more 
+compatible with the way I use emacs with R. Since I do the 
+same kinds of things in J that I ordinarily do in R, this works
+better for me (basically, C-c C-n executes a line and moves
+the cursor to the next line, like in ESS; I should also 
+probably change to Ctrl-Meta-x for loading regions, but C-c 
+C-n is fine with the little J regions you end up executing). 
+
+I also added a simple command to j-help to google search 
+jsoftware.com for addons and other commands; something I found
+myself doing often. C-c g does this. I might use this as a 
+fallback for when it fails on searches, but the use of lots 
+of funny symbols might make this an error.
+
+Oh yeah; this works great with setting the default browser to
+w3m or less great with W3. I hate using the mouse and 
+relearning what keystrokes do what, which is why I use this 
+instead of Jsoftware's otherwise excellent IDE.
+
+To do: figure out how to use the debugger on the command line.
 
 ################# original dox below here ###############################
 # J Mode

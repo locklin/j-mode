@@ -88,7 +88,7 @@ It groups the objects in LIST according to the predicate FN"
   :group 'applications
   :prefix "j-help-")
 
-(defcustom j-help-local-dictionary-url ""
+(defcustom j-help-local-dictionary-url "file:///home/scott/j64-701/addons/docs/help/dictionary"
   "Path to the local instance of the j-dictionary"
   :type 'string
   :group 'j-help)
@@ -210,6 +210,19 @@ string * int -> (string * string) list"
      (- (max (- point j-help-symbol-search-branch-limit) (point-at-bol)) (point-at-bol))
      (- point (point-at-bol))
      nil)))
+
+(defvar gsite-string "https://www.google.com/search?q=site%3Ajsoftware.com+")
+
+(defun google-searcher (symbol)
+  (concat gsite-string symbol))
+
+(defun j-help-gsearch (symbol)
+"Google search j-software's website"
+(interactive "sJ addon:")
+(let ((url (google-searcher symbol)))
+  (message "Searching J-software's website!")
+(browse-url url)))
+
 
 ;;;###autoload
 (defun j-help-lookup-symbol ( symbol )
