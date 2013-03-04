@@ -23,7 +23,7 @@ of funny symbols might make this an error.
 
 At some point I'll removove the dumb inline mods of colors and
 etc. that can be put into my .emacs, so I can track j-mode better,
-but for now, this is for my own use.
+but for now, this is for my own use on multiple machines.
 
 Oh yeah; this works great with setting the default browser to
 w3m or less great with W3. I hate using the mouse and 
