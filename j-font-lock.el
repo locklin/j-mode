@@ -5,7 +5,7 @@
 ;;
 ;; Authors: Zachary Elliott <ZacharyElliott1@gmail.com>
 ;; URL: http://github.com/zellio/j-mode
-;; Version: 1.0.0
+;; Version: 1.1.1
 ;; Keywords: J, Langauges
 
 ;; This file is not part of GNU Emacs.
@@ -43,7 +43,7 @@
 ;;; Code:
 
 
-;; (defconst j-font-lock-version "1.0.0"
+;; (defconst j-font-lock-version "1.1.1"
 ;;   "`j-font-lock' version")
 
 (defgroup j-font-lock nil
@@ -57,36 +57,27 @@
   :group 'j
   :group 'j-font-lock)
 
-(defmacro build-faces ( &rest faces )
-  "Allows for easy defining of multiple faces in one command.
-
- (BUILD-FACES (FACE-NAME FACE-RULES DOCS-STR &optional GROUP) ...)"
-  `(eval-when-compile
-     ,@(apply 'nconc (mapcar (lambda ( x )
-			       (let* ((name (car x))
-				      (body (cdr x)))
-				 `((defvar ,name ',name)
-				   (defface ,name ,@body))))
-			     faces))))
-
-(build-faces
- (j-verb-face
-  `((t (:foreground "orange red")))
+(defvar j-verb-face
+  (defface j-verb-face
+    `((t (:foreground "Red")))
   "Font Lock mode face used to higlight vrebs"
-  :group 'j-faces)
+  :group 'j-faces))
 
- (j-adverb-face
-  `((t (:foreground "green")))
+(defvar j-adverb-face
+  (defface j-adverb-face
+    `((t (:foreground "Green")))
   "Font Lock mode face used to higlight adverbs"
-  :group 'j-faces)
+  :group 'j-faces))
 
- (j-conjunction-face
-  `((t (:foreground "deep sky blue")))
+(defvar j-conjunction-face
+  (defface j-conjunction-face
+    `((t (:foreground "Blue")))
   "Font Lock mode face used to higlight conjunctions"
-  :group 'j-faces)
+  :group 'j-faces))
 
- (j-other-face
-  `((t (:foreground "dark gray")))
+(defvar j-other-face
+  (defface j-other-face
+    `((t (:foreground "Black")))
   "Font Lock mode face used to higlight others"
   :group 'j-faces))
 
@@ -127,7 +118,7 @@
   '("_9:" "p.." "{::"))
 (defvar j-font-lock-len-2-verbs
   '("x:" "u:" "s:" "r." "q:" "p:" "p." "o." "L." "j." "I." "i:" "i." "E." "e."
-    "C." "A." "?." "\":" "\"." "}:" "}." "{:" "{." "[:" "/:" "#:" "#." ";:" ",:"
+    "C." "A." "?." "\":" "\"." "}:" "}." "{:" "{." "[:" "/:" "\\:" "#:" "#." ";:" ",:"
     ",." "|:" "|." "~:" "~." "$:" "$." "^." "%:" "%." "-:" "-." "*:" "*."  "+:"
     "+." "_:" ">:" ">." "<:" "<."))
 (defvar j-font-lock-len-1-verbs

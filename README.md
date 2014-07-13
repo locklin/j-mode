@@ -1,38 +1,3 @@
-## Scott notes:
-Now merged with the latest j-mode, with a few modifications
-(location of J interp, colors, key rebindings). Note for 
-others: I needed to tell emacs exactly where  my J 
-interpretor was located; otherwise it tried to connect to 
-the Sun Java console, which is unhelpfully also named 
-jconsole. This confused me. This is set in an 
-obvious place in j-console.el.
-
-I added some changes to the default commands to make it more 
-compatible with the way I use emacs with R. Since I do the 
-same kinds of things in J that I ordinarily do in R, this works
-better for me (basically, C-c C-n executes a line and moves
-the cursor to the next line, like in ESS; I should also 
-probably change to Ctrl-Meta-x for loading regions, but C-c 
-C-n is fine with the little J regions you end up executing). 
-
-I also added a simple command to j-help to google search 
-jsoftware.com for addons and other commands; something I found
-myself doing often. C-c g does this. I might use this as a 
-fallback for when it fails on searches, but the use of lots 
-of funny symbols might make this an error.
-
-At some point I'll removove the dumb inline mods of colors and
-etc. that can be put into my .emacs, so I can track j-mode better,
-but for now, this is for my own use on multiple machines.
-
-Oh yeah; this works great with setting the default browser to
-w3m or less great with W3. I hate using the mouse and 
-relearning what keystrokes do what, which is why I use this 
-instead of Jsoftware's otherwise excellent IDE.
-
-To do: figure out how to use the debugger on the command line.
-
-################# original dox below here ###############################
 # J Mode
 
 Provides font-lock, REPL integration ( via comint ) and a basic help
@@ -43,7 +8,7 @@ documentation for the [J programming language](http://www.jsoftware.com).
 `j-mode` has been added to the el-get package managment system and can now
 be installed via the `el-get-install` function.
 
-To install the project manually fetch the source via git or direct download, 
+To install the project manually fetch the source via git or direct download,
 place in your load path and load / require normally.
 
 ```lisp
@@ -81,6 +46,15 @@ The module provides the following key bindings for convenience
 * <kbd>C-c C-l</kbd> Executes the current line
 * <kbd>C-c C-r</kbd> Executes the current region
 * <kbd>C-c C-c</kbd> Executes the current buffer
+
+NB. Java on many Linux systems provides an executable which is sadly named
+`jconsole`. This means that there is a good chance `j-mode` will attempt to
+start the Java console up instead of the J console when beginning a new REPL
+session. The easiest fix for this, as I doubt that we can convince the Java
+packagers to rename their executable, is to set the `j-console-cmd` variable
+provided by `j-console.el`. This can be done either directly or via the
+`custom-set-variables` block.
+
 
 ## J Help
 

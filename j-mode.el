@@ -5,7 +5,7 @@
 ;;
 ;; Authors: Zachary Elliott <ZacharyElliott1@gmail.com>
 ;; URL: http://github.com/zellio/j-mode
-;; Version: 1.0.0
+;; Version: 1.1.1
 ;; Keywords: J, Langauges
 
 ;; This file is not part of GNU Emacs.
@@ -54,7 +54,7 @@
 (require 'j-help)
 
 
-(defconst j-mode-version "1.0.0"
+(defconst j-mode-version "1.1.1"
   "`j-mode' version")
 
 (defgroup j-mode nil
@@ -72,8 +72,9 @@
     (define-key map (kbd "C-c !")   'j-console)
     (define-key map (kbd "C-c C-c") 'j-console-execute-buffer)
     (define-key map (kbd "C-c C-r") 'j-console-execute-region)
-    (define-key map (kbd "C-c C-l") 'j-console-execute-line)
     (define-key map (kbd "C-c C-n") 'j-console-execute-line-remain)
+    (define-key map (kbd "C-c C-l") 'j-console-execute-line)
+    (define-key map (kbd "C-c g") 'j-help-gsearch)
     (define-key map (kbd "C-c h")   'j-help-lookup-symbol)
     (define-key map (kbd "C-c C-h") 'j-help-lookup-symbol-at-point)
     map)
@@ -83,9 +84,9 @@
 (easy-menu-define j-mode-menu j-mode-map "J Mode menu"
   '("J"
     ["Start J Console" j-console t]
-    ["Execute Buffer" j-execute-buffer t]
-    ["Execute Region" j-execute-region t]
-    ["Execute Line" j-execute-line t]
+    ["Execute Buffer" j-console-execute-buffer t]
+    ["Execute Region" j-console-execute-region t]
+    ["Execute Line" j-console-execute-line t]
     "---"
     ["J Symbol Look-up" j-help-lookup-symbol t]
     ["J Symbol Dynamic Look-up" j-help-lookup-symbol-at-point t]
@@ -101,7 +102,7 @@
         major-mode 'j-mode)
   (set-syntax-table j-font-lock-syntax-table)
   (set (make-local-variable 'comment-start)
-       "NB.")
+       "NB. ")
   (set (make-local-variable 'comment-start-skip)
        "\\(\\(^\\|[^\\\\\n]\\)\\(\\\\\\\\\\)*\\)NB. *")
   (set (make-local-variable 'font-lock-comment-start-skip)

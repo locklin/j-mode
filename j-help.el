@@ -5,7 +5,7 @@
 ;;
 ;; Authors: Zachary Elliott <ZacharyElliott1@gmail.com>
 ;; URL: http://github.com/zellio/j-mode
-;; Version: 1.0.0
+;; Version: 1.1.1
 ;; Keywords: J, Languages
 
 ;; This file is not part of GNU Emacs.
@@ -106,7 +106,7 @@ It groups the objects in LIST according to the predicate FN"
 (defconst j-help-voc-alist
   '(("~" . "d220v") ("}" . "d530n") ("|" . "d230") ("#" . "d400")
     ("{" . "d520") ("`" . "d610") ("_" . "d030") ("^" . "d200")
-    ("]" . "d500") ("\\" . "d430") (":" . "d432") ("." . "d431")
+    ("]" . "d500") ("\\" . "d430") ("\\:" . "d432") ("\\." . "d431")
     ("\"" . "d600n") ("[" . "d500") ("@" . "d620") ("?" . "d640")
     ("=" . "d000") (";" . "d330") (":" . "d310n") ("/" . "d420")
     ("." . "d300") ("-" . "d120") ("," . "d320") ("+" . "d100")
@@ -126,12 +126,12 @@ It groups the objects in LIST according to the predicate FN"
     (".:" . "d301") (".." . "d301") ("-:" . "d122") ("-." . "d121")
     (",:" . "d322") (",." . "d321") ("+:" . "d102") ("+." . "d101")
     ("*:" . "d112") ("*." . "d111") ("<:" . "d012") ("<." . "d011")
-    (">:" . "d022") (">." . "d021") ("&:" . "d632") ("&." . "d631")
+    (">:" . "d022") (">." . "d021") ("&:" . "d632") ("&." . "d631") ("&.:" . "d631c")
     ("%:" . "d132") ("%." . "d131") ("$:" . "d212") ("$." . "d211")
     ("#:" . "d402") ("#." . "d401") ("S:" . "dscapco") ("M." . "dmcapdot")
     ("L:" . "dlcapco") ("L." . "dlcapdot") ("I." . "dicapdot") ("H." . "dhcapdot")
     ("E." . "decapdot") ("D:" . "ddcapco") ("D." . "ddcapdot") ("C." . "dccapdot")
-    ("A." . "dacapdot") ("@:" . "d622") ("!:" . "d412") ("{::" . "d523")
+    ("A." . "dacapdot") ("@:" . "d622") ("!" . "d410") ("!." . "d411") ("!:" . "d412") ("{::" . "d523")
     ("p.." . "dpdotdot") ("_9:" . "dconsf") ("&.:" . "d631") ("NB." . "dnb"))
   "(string * string) alist")
 
@@ -210,6 +210,18 @@ string * int -> (string * string) list"
      (- (max (- point j-help-symbol-search-branch-limit) (point-at-bol)) (point-at-bol))
      (- point (point-at-bol))
      nil)))
+
+(defvar gsite-string "https://www.google.com/search?q=site%3Ajsoftware.com+")
+
+(defun google-searcher (symbol)
+  (concat gsite-string symbol))
+
+(defun j-help-gsearch (symbol)
+  "Google search j-software's website"
+  (interactive "sJ addon:")
+  (let ((url (google-searcher symbol)))
+    (message "Searching J-software's website!")
+    (browse-url url)))
 
 ;;;###autoload
 (defun j-help-lookup-symbol ( symbol )

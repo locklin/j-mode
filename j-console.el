@@ -5,7 +5,7 @@
 ;;
 ;; Authors: Zachary Elliott <ZacharyElliott1@gmail.com>
 ;; URL: http://github.com/zellio/j-mode
-;; Version: 1.0.0
+;; Version: 1.1.1
 ;; Keywords: J, Langauges
 
 ;; This file is not part of GNU Emacs.
@@ -37,7 +37,7 @@
 (require 'comint)
 
 
-;; (defconst j-console-version "0.0.1"
+;; (defconst j-console-version "1.1.1"
 ;;   "`j-console' version")
 
 (defgroup j-console nil
@@ -46,7 +46,7 @@
   :group 'j
   :prefix "j-console-")
 
-(defcustom j-console-cmd "/home/scott/j64-701/bin/jconsole"
+(defcustom j-console-cmd "~/j64-802/bin/jconsole"
   "Name of the executable used for the J REPL session"
   :type 'string
   :group 'j-console)
@@ -109,12 +109,16 @@ Should be NIL if there is no file not the empty string"
         (j-console-create-session)
         (get-process j-console-cmd-buffer-name))))
 
+(define-derived-mode inferior-j-mode comint-mode "Inferior J"
+  "Major mode for J inferior process.")
+
 ;;;###autoload
 (defun j-console ()
   "Ensures a running j-console-cmd session and switches focus to
 the containing buffer"
   (interactive)
-  (switch-to-buffer-other-window (process-buffer (j-console-ensure-session))))
+  (switch-to-buffer-other-window (process-buffer (j-console-ensure-session)))
+  (inferior-j-mode))
 
 (defun j-console-execute-region ( start end )
   "Sends current region to the j-console-cmd session and exectues it"
@@ -127,7 +131,6 @@ the containing buffer"
     (goto-char (point-max))
     (insert-string (format "\n%s\n" region))
     (comint-send-input)))
-
 
 (defun j-console-execute-region-remain ( start end )
   "Sends current region to the j-console-cmd session and exectues it"
@@ -142,8 +145,7 @@ the containing buffer"
     (insert-string (format "\n%s\n" region))
     (comint-send-input)
     (pop-to-buffer saved)
-    (forward-line)
-))
+    (forward-line)))
 
 (defun j-console-execute-line ()
   "Sends current line to the j-console-cmd session and exectues it"
@@ -154,6 +156,7 @@ the containing buffer"
   "Sends current line to the j-console-cmd session and exectues it"
   (interactive)
   (j-console-execute-region-remain (point-at-bol) (point-at-eol)))
+
 
 (defun j-console-execute-buffer ()
   "Sends current buffer to the j-console-cmd session and exectues it"
