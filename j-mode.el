@@ -75,7 +75,6 @@
     (define-key map (kbd "C-c C-l") 'j-console-execute-line)
     (define-key map (kbd "C-c C-n") 'j-console-execute-line-remain)
     (define-key map (kbd "C-c h")   'j-help-lookup-symbol)
-    (define-key map (kbd "C-c g")   'j-help-gsearch)
     (define-key map (kbd "C-c C-h") 'j-help-lookup-symbol-at-point)
     map)
   "Keymap for J major mode")
