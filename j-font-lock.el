@@ -59,7 +59,7 @@
 
 (defvar j-verb-face
   (defface j-verb-face
-    `((t (:foreground "Red")))
+    `((t (:foreground "OrangeRed")))
   "Font Lock mode face used to higlight vrebs"
   :group 'j-faces))
 
@@ -71,13 +71,13 @@
 
 (defvar j-conjunction-face
   (defface j-conjunction-face
-    `((t (:foreground "Blue")))
+    `((t (:foreground "SkyBlue")))
   "Font Lock mode face used to higlight conjunctions"
   :group 'j-faces))
 
 (defvar j-other-face
   (defface j-other-face
-    `((t (:foreground "Black")))
+    `((t (:foreground "BrickBlue")))
   "Font Lock mode face used to higlight others"
   :group 'j-faces))
 

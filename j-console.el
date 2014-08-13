@@ -46,7 +46,7 @@
   :group 'j
   :prefix "j-console-")
 
-(defcustom j-console-cmd "~/j64-802/bin/jconsole"
+(defcustom j-console-cmd "~/j64-701/bin/jconsole"
   "Name of the executable used for the J REPL session"
   :type 'string
   :group 'j-console)

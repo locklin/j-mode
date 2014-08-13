@@ -88,7 +88,7 @@ It groups the objects in LIST according to the predicate FN"
   :group 'applications
   :prefix "j-help-")
 
-(defcustom j-help-local-dictionary-url ""
+(defcustom j-help-local-dictionary-url "file://home/scott/j64-701/addons/docs/help/dictionary"
   "Path to the local instance of the j-dictionary"
   :type 'string
   :group 'j-help)
