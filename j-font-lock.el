@@ -6,8 +6,7 @@
 ;; Authors: Zachary Elliott <ZacharyElliott1@gmail.com>
 ;; URL: http://github.com/zellio/j-mode
 ;; Version: 1.1.1
-;; Keywords: J, Langauges
-
+;; Keywords: J, Languages
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
@@ -94,7 +93,7 @@
     (modify-syntax-entry ?\( "()"  table)
     (modify-syntax-entry ?\) ")("  table)
     (modify-syntax-entry ?\' "\""  table)
-    (modify-syntax-entry ?\N "w 1" table)
+    (modify-syntax-entry ?N "w 1" table)
     (modify-syntax-entry ?\B "w 2" table)
     (modify-syntax-entry ?\n ">"   table)
     (modify-syntax-entry ?\r ">"   table)

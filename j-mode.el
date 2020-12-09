@@ -7,7 +7,6 @@
 ;; URL: http://github.com/zellio/j-mode
 ;; Version: 1.1.1
 ;; Keywords: J, Langauges
-
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:

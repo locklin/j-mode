@@ -7,7 +7,6 @@
 ;; URL: http://github.com/zellio/j-mode
 ;; Version: 1.1.1
 ;; Keywords: J, Langauges
-
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
@@ -46,7 +45,8 @@
   :group 'j
   :prefix "j-console-")
 
-(defcustom j-console-cmd "~/j64-701/bin/jconsole"
+
+(defcustom j-console-cmd "~/j902/bin/jconsole" 
   "Name of the executable used for the J REPL session"
   :type 'string
   :group 'j-console)
@@ -129,7 +129,7 @@ the containing buffer"
         (session (j-console-ensure-session)))
     (pop-to-buffer (process-buffer session))
     (goto-char (point-max))
-    (insert-string (format "\n%s\n" region))
+    (insert (format "\n%s\n" region))
     (comint-send-input)))
 
 (defun j-console-execute-region-remain ( start end )
